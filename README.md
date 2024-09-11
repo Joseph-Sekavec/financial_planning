@@ -36,3 +36,8 @@ git commit -m "message"
 If you get a "histories issue"
 
 git pull --allow-unrelated-histories     before doing the above
+
+
+
+
+To setup on a new device: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address
