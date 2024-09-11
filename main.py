@@ -15,8 +15,18 @@ from wsgiref.validate import validator
 
 ###############################################################################################
 
+## I create a database if it does not exist.
 conn = sqlite3.connect("budget.db")
 
+## Apparently I have to create a cursor object to do anything in this database:
+cursor = conn.cursor()
+
+## I want to create a table of clients if none exists:
+cursor.execute('''CREATE TABLE IF NOT EXISTS clients (id INTEGER PRIMARY KEY, first_name varchar(255), last_name varchar(255))''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), bank_name varchar(255), account_balance REAL)''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), brokerage_name varchar(255), account_balance REAL)''')
 def webopen():
     webbrowser.open_new_tab("https://www.google.com")
 
