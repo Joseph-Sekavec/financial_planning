@@ -27,6 +27,10 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS clients (id INTEGER PRIMARY KEY, fi
 cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), bank_name varchar(255), account_balance REAL)''')
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), brokerage_name varchar(255), account_balance REAL)''')
+
+
+
+## Example of how to open web browser. Seemed important at the time.
 def webopen():
     webbrowser.open_new_tab("https://www.google.com")
 
