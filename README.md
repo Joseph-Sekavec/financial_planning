@@ -23,3 +23,10 @@ git push -u origin main
 
 
 https://github.com/Joseph-Sekavec/financial_planning.git
+
+
+To commit changes:
+
+git add *
+git push
+git commit -m "message"
