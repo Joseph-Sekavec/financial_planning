@@ -25,8 +25,14 @@ git push -u origin main
 https://github.com/Joseph-Sekavec/financial_planning.git
 
 
+
+
 To commit changes:
 
 git add *
 git push
 git commit -m "message"
+
+If you get a "histories issue"
+
+git pull --allow-unrelated-histories     before doing the above
