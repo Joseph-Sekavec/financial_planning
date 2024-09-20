@@ -9,8 +9,15 @@ from datetime import datetime
 from decimal import Decimal
 
 
+
+
 def p():
     print("Hello")
+
+
+if len(sys.argv)==2:
+    if str(sys.argv[1]) == "p()":
+        p()
 
 #print ('argument list', sys.argv)
  # Yay, we can take in command line arguments... So... How the fuck do we
