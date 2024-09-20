@@ -30,7 +30,9 @@ https://github.com/Joseph-Sekavec/financial_planning.git
 To commit changes:
 
 git add *
+
 git push
+
 git commit -m "message"
 
 If you get a "histories issue"
@@ -41,3 +43,8 @@ git pull --allow-unrelated-histories     before doing the above
 
 
 To setup on a new device: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address
+
+
+Note: Recommend having apache server, I am using xampp.
+
+Download xampp from: https://www.apachefriends.org/download.html
