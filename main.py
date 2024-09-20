@@ -74,7 +74,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS brokerages (ID INTEGER REFERENCES c
 ##### This will check for command line arguments, and push the inputs to the database.
 
 if len(sys.argv) ==4:
-    print("4!!!!!!!!!!!!!")
+    #print("4!!!!!!!!!!!!!")
     id_num = int(sys.argv[1])
     FirstName = str(sys.argv[2])
     LastName = str(sys.argv[3])

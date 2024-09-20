@@ -8,12 +8,35 @@
 		to give us your personal information. </p>
 		
 		<div>
-			<a href="login.html">Continue giving us your data! (login) </a>
+			<a href="login.php">Continue giving us your data! (login) </a>
 		</div>
 		
 		<div>
-			<a href="signup.html">Give us your data!</a>
+			<a href="signup.php">Give us your data!</a>
 		</div>
+		
+		
+		
+		
+		<?php 
+
+		//$str = "Hello PHP\n";
+
+		//system("echo ".$str);
+		
+		/*
+		$str = '8';
+		$str1 = "Joseph";
+		$str2 = "Smith";
+		//system("python".$str);
+		
+		passthru("python".$str.$str1.$str2);
+		
+		*/
+		
+//		exec("python main.py 8 Joseph Smith"); // THIS WORKS!!!!!!!!!!!!!!!!!
+		
+		?>
 		
 </body>
 
