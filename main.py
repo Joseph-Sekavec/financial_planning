@@ -3,10 +3,38 @@ import sqlite3
 import webbrowser
 import os
 import _json
+import sys
+import argparse
+from datetime import datetime
+from decimal import Decimal
 
+
+def p():
+    print("Hello")
+
+#print ('argument list', sys.argv)
+ # Yay, we can take in command line arguments... So... How the fuck do we
+                   # get javascript to pass commands to the command line?
+# print ("Hello {}. How are you?".format(name))
+
+#name = str(sys.argv[1])
+#name1 = str(sys.argv[2])
+#name2 = str(sys.argv[3])
+#print(name + " " + name1 + " " + name2)
+##### Works as I thought!
+## webbrowser.open_new_tab(name)
+
+
+
+#for i in sys.argv:
+#    print(i)
+
+##file = 'test.txt'
+
+##open(file, 'a').close()
 
 print("Hello world")
-from datetime import datetime
+
 from wsgiref.validate import validator
 
 ###############################################################################################
@@ -15,7 +43,7 @@ from wsgiref.validate import validator
 
 ###############################################################################################
 
-## I create a database if it does not exist.
+## I create a database if it does not exist, connect to it if it does.
 conn = sqlite3.connect("budget.db")
 
 ## Apparently I have to create a cursor object to do anything in this database:
@@ -28,26 +56,103 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES client
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS brokerages (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), brokerage_name varchar(255), account_balance REAL)''')
 
+# cursor.execute('''insert into clients values (?,?,?)''', (0, "John", "Doe"))
+
+
+#####################################
+## When a user creates an account, I really want to create a user ID that will
+## pass to the database
+#####################################
+
+##### This will check for command line arguments, and push the inputs to the database.
+
+if len(sys.argv) ==4:
+    print("4!!!!!!!!!!!!!")
+    id_num = int(sys.argv[1])
+    FirstName = str(sys.argv[2])
+    LastName = str(sys.argv[3])
+
+    cursor.execute('''insert into clients values (?,?,?)''', (id_num, FirstName, LastName))
+    conn.commit()
+
+elif (len(sys.argv) == 7):
+    print("SEVEN")
+    if str(sys.argv[1]) == "bank":
+        print("BANK!!!!!!")
+        id_num = int(sys.argv[2])
+        FirstName = str(sys.argv[3])
+        LastName = str(sys.argv[4])
+        BankName = str(sys.argv[5])
+        BankBalance = float(sys.argv[6])
+        cursor.execute('''insert into banks values (?,?,?,?,?)''', (id_num, FirstName, LastName, BankName, BankBalance))
+        conn.commit()
+
+    elif str(sys.argv[1]) == "brokerage":
+        print("BROKERSSSSSSSSSSSSSSSSSSS")
+        id_num = int(sys.argv[2])
+        FirstName = str(sys.argv[3])
+        LastName = str(sys.argv[4])
+        BrokerName = str(sys.argv[5])
+        BrokerBalance = float(sys.argv[6])
+        cursor.execute('''insert into brokerages values (?,?,?,?,?)''', (id_num, FirstName, LastName, BrokerName, BrokerBalance))
+        conn.commit()
+
+
+
+
+#### I will need to obtain info from the sql using a form, then feed it to this function somehow.
+def sum_bank_value(client):
+    s = 0
+    for i in client.bank_account_value:
+        s+=i
+    client.bank_account_value = s
+#### Same here...
+def pie_chart(client):
+    iteration = 0
+    for i in client.bank_account:
+        percent = (100 * client.bank_account_value[iteration]/sum_bank_value(client))
+        p = str(percent)
+        print("Your percentage for " + i+ " is: " + p + "%")
+
+        iteration += 1
+
+
+
+
+
+
+
+print("Size of argument vector: ")
+
+print(len(sys.argv))
+
+
+
+
+
+
+
+
+
+
+
+
+
+def initialize_client(ident, fn,ln):
+    ## This function will add the client to the database.
+    cursor.execute("INSERT INTO clients", {"id":ident, "first_name":fn, "last_name":ln})
+
 
 
 ## Example of how to open web browser. Seemed important at the time.
-def webopen():
-    webbrowser.open_new_tab("https://www.google.com")
+#def webopen():
+#    webbrowser.open_new_tab("https://www.google.com")
 
 # print("Hello world")
 
 # list = [1,2,3,4]
 bank_name = ""
 account_balance = 0
-
-#### I want to be able to take an input as a bank name.
-#### Need to change this to somehow get this from the form data once the site is up
-#bank_name = input("Give a bank name: ")
-#print("Bank account is: " + bank_name)
-
-#### Same thing for the account_balance
-#account_balance = input("Give the balance for this account: ")
-#print("The Balance for BOA is: " + str(account_balance))
 
 
 #### I'm not sure where I'm going with this class.
@@ -85,48 +190,3 @@ class client:
 ##### Client class will probably be our biggest class, hence it's here in main. And well,
 ##### it's the most important part of this whole thing really...
 
-
-
-
-#### I will need to obtain info from the sql using a form, then feed it to this function somehow.
-def sum_bank_value(client):
-    s = 0
-    for i in client.bank_account_value:
-        s+=i
-    client.bank_account_value = s
-#### Same here...
-def pie_chart(client):
-    iteration = 0
-    for i in client.bank_account:
-        percent = (100 * client.bank_account_value[iteration]/sum_bank_value(client))
-        p = str(percent)
-        print("Your percentage for " + i+ " is: " + p + "%")
-
-        iteration += 1
-#### We need to get these values and throw them back to the JavaScript... But it might be more efficient to
-#### do some of these calculations in javascript? I'll figure it out later, but at least the logic is here.
-
-
-#jake = client()
-
-#print(jake.bank_account)
-
-#print(sum_bank_value(jake))
-
-#pie_chart(jake)
-
-
-
-#o = input("Would you like to open a web browser? ")
-#if o == "Yes" or o== "yes" or o == 'y' or o =='Y':
-#    webopen()
-
-
-
-## jake.account = (["BOA","CHASE"],[12,1])
-
-
-#jake.bank_account.append("BOA")
-#jake.bank_account.append("CHASE")
-#jake.bank_account_value.append(12)
-#jake.bank_accoun
