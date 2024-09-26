@@ -8,13 +8,14 @@
 		to give us your personal information. </p>
 		
 		<div>
-			<a href="login.php">Continue giving us your data! (login) </a>
+			<a href="login.php"><button>Continue giving us your data! (login)</button> </a>
 		</div>
+		
+
 		
 		<div>
-			<a href="signup.php">Give us your data!</a>
-		</div>
-		
+			<a href="signup.php"><button>Give us your data!</button></a>
+		</div>		
 		
 		
 		
