@@ -82,7 +82,7 @@ cursor_users.execute('''CREATE TABLE IF NOT EXISTS users (email PRIMARY KEY, pas
 
 
 if (len(sys.argv) == 3):
-    print("In the users section.")
+    #print("In the users section.")
     email = str(sys.argv[1])
     pass_word = str(sys.argv[2])
 
