@@ -40,9 +40,9 @@ if len(sys.argv)==2:
 
 ##open(file, 'a').close()
 
-print("Hello world")
+#print("Hello world")
 
-print("TESTING!!!!!!!")
+#print("TESTING!!!!!!!")
 
 from wsgiref.validate import validator
 
@@ -101,9 +101,9 @@ elif len(sys.argv) ==4:
 
 
 elif (len(sys.argv) == 7):
-    print("SEVEN")
+    #print("SEVEN")
     if str(sys.argv[1]) == "bank":
-        print("BANK!!!!!!")
+        #print("BANK!!!!!!")
         id_num = int(sys.argv[2])
         FirstName = str(sys.argv[3])
         LastName = str(sys.argv[4])
@@ -113,7 +113,7 @@ elif (len(sys.argv) == 7):
         conn.commit()
 
     elif str(sys.argv[1]) == "brokerage":
-        print("BROKERSSSSSSSSSSSSSSSSSSS")
+        #print("BROKERSSSSSSSSSSSSSSSSSSS")
         id_num = int(sys.argv[2])
         FirstName = str(sys.argv[3])
         LastName = str(sys.argv[4])
@@ -147,9 +147,9 @@ def pie_chart(client):
 
 
 
-print("Size of argument vector: ")
+#print("Size of argument vector: ")
 
-print(len(sys.argv))
+#print(len(sys.argv))
 
 
 
