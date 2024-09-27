@@ -4,7 +4,7 @@
 <!-- <script src="fp.js"></script> -->
 
 <body>
-        <p>Welcome to totallynotascam corp. We here at totallynotascamc corp want to assist you with your budgeting needs. Please sign in, or click the signup button 
+        <p>Welcome to totallynotascam corp. We here at totallynotascam corp want to assist you with your budgeting needs. Please sign in, or click the signup button 
 		to give us your personal information. </p>
 		
 		<div>
