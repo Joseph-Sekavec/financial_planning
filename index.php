@@ -35,7 +35,7 @@
 		*/
 		
 		
-		exec("python main.py 9 Jake Miller"); // THIS WORKS!!!!!!!!!!!!!!!!!
+		//exec("python main.py 9 Jake Miller"); // THIS WORKS!!!!!!!!!!!!!!!!!
 		
 		?>
 		
