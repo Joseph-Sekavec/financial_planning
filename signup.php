@@ -1,6 +1,6 @@
 
 
-<form action="action_page.php" style="border:1px solid #ccc">
+<form action="sql_page.php" style="border:1px solid #ccc">
 	<style>
 	body {
 	background-image: url('greed.jpg');
@@ -57,22 +57,22 @@
 <!-- The Modal (contains the Sign Up form) -->
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">times;</span>
-  <form class="modal-content" action="/action_page.php">
+  <form class="modal-content" action="/sql_page.php">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="text" value='$email' placeholder="Enter Email" name="email" required>
 
       <label for="firstName"><b>First Name</b></label>
-      <input type="text" placeholder="Enter First Name" name="firstName" required>
+      <input type="text" value='$fn' placeholder="Enter First Name" name="firstName" required>
 
       <label for="lastName"><b>Last Name</b></label>
-      <input type="text" placeholder="Enter Last Name" name="lastName" required>
+      <input type="text" value='$ln' placeholder="Enter Last Name" name="lastName" required>
 
       <label for="social"><b>Social Security Number</b></label>
-      <input type="text" placeholder="Enter social Security Number" name="social" required>
+      <input type="text" value='$ssn' placeholder="Enter social Security Number" name="social" required>
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
@@ -88,6 +88,8 @@
 
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+		
+
         <button type="submit" class="signup">Sign Up</button>
       </div>
     </div>
@@ -96,7 +98,7 @@
 
 </html>
 
-
+<!--
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
@@ -108,6 +110,8 @@ window.onclick = function(event) {
     }
 }
 </script>
+
+-->
 
 <style>
 * {box-sizing: border-box}

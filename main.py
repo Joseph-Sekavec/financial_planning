@@ -42,6 +42,8 @@ if len(sys.argv)==2:
 
 print("Hello world")
 
+print("TESTING!!!!!!!")
+
 from wsgiref.validate import validator
 
 ###############################################################################################
@@ -52,9 +54,11 @@ from wsgiref.validate import validator
 
 ## I create a database if it does not exist, connect to it if it does.
 conn = sqlite3.connect("budget.db")
+ponn = sqlite3.connect('users.db')
 
 ## Apparently I have to create a cursor object to do anything in this database:
 cursor = conn.cursor()
+cursor_users = ponn.cursor()
 
 ## I want to create a table of clients if none exists:
 cursor.execute('''CREATE TABLE IF NOT EXISTS clients (id INTEGER PRIMARY KEY, first_name varchar(255), last_name varchar(255))''')
@@ -63,7 +67,10 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES client
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS brokerages (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), brokerage_name varchar(255), account_balance REAL)''')
 
-# cursor.execute('''insert into clients values (?,?,?)''', (0, "John", "Doe"))
+cursor_users.execute('''CREATE TABLE IF NOT EXISTS users (email PRIMARY KEY, password varchar(255))''')
+
+#cursor_users.execute('''CREATE TABLE IF NOT EXISTS users (email PRIMARY KEY, password varchar(255))''')
+# cursor_users.execute('''insert into clients values (?,?)''', ("John@email.com", "Doe"))
 
 
 #####################################
@@ -73,7 +80,17 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS brokerages (ID INTEGER REFERENCES c
 
 ##### This will check for command line arguments, and push the inputs to the database.
 
-if len(sys.argv) ==4:
+
+if (len(sys.argv) == 3):
+    print("In the users section.")
+    email = str(sys.argv[1])
+    pass_word = str(sys.argv[2])
+
+    cursor_users.execute('''insert into users values (?,?)''', (email, pass_word))
+    ponn.commit()
+
+
+elif len(sys.argv) ==4:
     #print("4!!!!!!!!!!!!!")
     id_num = int(sys.argv[1])
     FirstName = str(sys.argv[2])
@@ -81,6 +98,7 @@ if len(sys.argv) ==4:
 
     cursor.execute('''insert into clients values (?,?,?)''', (id_num, FirstName, LastName))
     conn.commit()
+
 
 elif (len(sys.argv) == 7):
     print("SEVEN")

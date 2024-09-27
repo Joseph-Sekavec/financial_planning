@@ -26,16 +26,16 @@
 		//system("echo ".$str);
 		
 		/*
-		$str = '8';
-		$str1 = "Joseph";
-		$str2 = "Smith";
+		$str = '99';
+		$str1 = "Jake";
+		$str2 = "Miller";
 		//system("python".$str);
 		
 		passthru("python".$str.$str1.$str2);
-		
 		*/
 		
-//		exec("python main.py 8 Joseph Smith"); // THIS WORKS!!!!!!!!!!!!!!!!!
+		
+		exec("python main.py 9 Jake Miller"); // THIS WORKS!!!!!!!!!!!!!!!!!
 		
 		?>
 		
