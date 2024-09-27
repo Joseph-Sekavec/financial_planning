@@ -7,8 +7,8 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
 	background-size: 100% 100%;
-	</style>
 	}
+	</style>
 	
 
   <div class="container">
@@ -18,7 +18,16 @@
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
+	
+    <label for="firstName"><b>First Name</b></label>
+    <input type="text" placeholder="Enter First Name" name="firstName" required>
 
+    <label for="lastName"><b>Last Name</b></label>
+    <input type="text" placeholder="Enter Last Name" name="lastName" required>
+
+    <label for="social"><b>Social Security Number</b></label>
+    <input type="text" placeholder="Enter social Security Number" name="social" required>
+	
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
@@ -38,6 +47,8 @@
   </div>
 </form>
 
+
+
 <html>
 
 <!-- Button to open the modal -->
@@ -53,6 +64,15 @@
       <hr>
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="firstName"><b>First Name</b></label>
+      <input type="text" placeholder="Enter First Name" name="firstName" required>
+
+      <label for="lastName"><b>Last Name</b></label>
+      <input type="text" placeholder="Enter Last Name" name="lastName" required>
+
+      <label for="social"><b>Social Security Number</b></label>
+      <input type="text" placeholder="Enter social Security Number" name="social" required>
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
