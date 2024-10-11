@@ -1,55 +1,13 @@
 <html>
+
+<style>
+table, th, td {
+  border: 2px solid black;
+}
+</style>
 <p>
-<?php
-/*
-	
-	// I need to connect to the database for users...
-	$servername = "localhost";
-	$username = "Joseph";
-	$password = "password1";
-	$dbname = "users";
-
-
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
-			
-	// Check connection
-	if ($conn->connect_error) 
-	{
-	die("Connection failed: " . $conn->connect_error);
-	}
-	else
-	{
-		echo("GOOD \n");
-	}
 
 	
-	
-	// Need to check form data against username and password...
-		
-	
-	?>
-	</p>	
-		
-	</p>
-	<?php
-	$budg = mysqli_connect($servername, $username, $password, "budget");
-	
-	if ($budg->connect_error) 
-	{
-	die("Connection failed: " . $conn->connect_error);
-	}
-	else
-	{
-		echo("GREAT \n");
-	}
-	?>
-	
-	*/
-	</p>
-	
-	
-
-
 	<p>
 		<?php
 
@@ -68,20 +26,36 @@
 			
 			
 			/////////////////////// This is a test to make sure I can actually access the databases: //////////////////////////////////////////////////////////////
+			/*
 					$connection = new SQLite3('budget.db');
 					if($connection){
-						echo "Connected\n";
-					}
+						echo "Table of Clients\n";
+					
 					$results = $connection->query('SELECT * FROM clients');
+					echo('<table>');
+					echo("<th>ID");
+					echo("<th>First Name");
+					echo("<th>Last Name");
 					while($row=$results->fetchArray(SQLITE3_ASSOC)){
-						echo 'id = ' . $row['id'] . " ";
-						echo 'First Name = ' . $row['first_name'] . " ";
-						echo 'Last Name = ' . $row['last_name'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('<tr>');
+						echo('<td>');
+						echo $row['id'] . " ";
+						echo('</td>');
+						echo('<td>');
+						echo $row['first_name'] . " ";
+						echo('</td>');
+						echo('<td>');
+						echo $row['last_name'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("</tr>");
+						
 				
 					}
-			
+					echo('</table>');
+					}
+					*/
+			//////////////////////////////////////// The above block works very well, so I will keep it in here to canibalize what I wrote here in other places. ///////////////////
 		?>
 	</p>
-
 	
-</html>
+	</html>

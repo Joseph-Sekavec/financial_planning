@@ -53,8 +53,11 @@ from wsgiref.validate import validator
 ###############################################################################################
 
 ## I create a database if it does not exist, connect to it if it does.
-conn = sqlite3.connect(r"C:\\xampp\\mysql\\data\\budget\\budget.db")
-ponn = sqlite3.connect(r"C:\\xampp\mysql\\data\\users\\users.db")
+#conn = sqlite3.connect(r"C:\\xampp\\mysql\\data\\budget\\budget.db")
+#ponn = sqlite3.connect(r"C:\\xampp\mysql\\data\\users\\users.db")
+
+conn = sqlite3.connect("budget.db")
+ponn = sqlite3.connect("users.db")
 
 ## Apparently I have to create a cursor object to do anything in this database:
 cursor = conn.cursor()
