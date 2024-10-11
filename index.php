@@ -39,6 +39,60 @@
 		
 		?>
 		
+		
+		
+		
+		<?php
+			
+			$servername = "localhost";
+			$username = "Joseph";
+			$password = "password1";
+			$dbname = "users.db";
+			
+			//"C:\xampp\htdocs\financial_planning_localserver\users.db";
+			
+			//mysql_query("grant file on *.* to Joseph@localhost identified by 'Joseph';");
+			
+
+			/*
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+			}
+			else{
+				echo("Good");
+			}
+			
+			$sql = "CREATE DATABASE myDB";
+			if ($conn->query($sql) === TRUE) {
+			echo "Database created successfully";
+			} else {
+			echo "Error creating database: " . $conn->error;
+			}
+			*/
+			
+			
+			
+						
+			// Create connection
+			$conn = new mysqli($servername, $username, $password);
+			// Check connection
+			if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+			}	
+			
+			$sql = "CREATE DATABASE myDB";
+			if ($conn->query($sql) === TRUE) {
+			echo "Database created successfully";
+			} else {
+			echo "Error creating database: " . $conn->error;
+			}			
+			
+			
+			
+		?>
+		
 </body>
 
 
@@ -154,3 +208,6 @@ hr {
   }
 }
 </style>
+
+
+

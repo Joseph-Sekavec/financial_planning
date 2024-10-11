@@ -53,8 +53,8 @@ from wsgiref.validate import validator
 ###############################################################################################
 
 ## I create a database if it does not exist, connect to it if it does.
-conn = sqlite3.connect("budget.db")
-ponn = sqlite3.connect('users.db')
+conn = sqlite3.connect(r"C:\\xampp\\mysql\\data\\budget\\budget.db")
+ponn = sqlite3.connect(r"C:\\xampp\mysql\\data\\users\\users.db")
 
 ## Apparently I have to create a cursor object to do anything in this database:
 cursor = conn.cursor()
@@ -101,7 +101,7 @@ elif len(sys.argv) ==4:
 
 
 elif (len(sys.argv) == 7):
-    #print("SEVEN")
+    print("SEVEN")
     if str(sys.argv[1]) == "bank":
         #print("BANK!!!!!!")
         id_num = int(sys.argv[2])
@@ -147,9 +147,9 @@ def pie_chart(client):
 
 
 
-#print("Size of argument vector: ")
+print("Size of argument vector: ")
 
-#print(len(sys.argv))
+print(len(sys.argv))
 
 
 
