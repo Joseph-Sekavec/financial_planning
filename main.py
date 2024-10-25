@@ -64,11 +64,11 @@ cursor = conn.cursor()
 cursor_users = ponn.cursor()
 
 ## I want to create a table of clients if none exists:
-cursor.execute('''CREATE TABLE IF NOT EXISTS clients (id INTEGER PRIMARY KEY, first_name varchar(255), last_name varchar(255))''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS clients (id varchar(255) PRIMARY KEY, first_name varchar(255), last_name varchar(255))''')
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), bank_name varchar(255), account_balance REAL)''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS banks (ID varchar(255) REFERENCES clients(id), first_name varchar(255), last_name varchar(255), bank_name varchar(255) PRIMARY KEY, account_balance REAL)''')
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS brokerages (ID INTEGER REFERENCES clients(id), first_name varchar(255), last_name varchar(255), brokerage_name varchar(255), account_balance REAL)''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS brokerages (ID varchar(255) REFERENCES clients(id), first_name varchar(255), last_name varchar(255), brokerage_name varchar(255) PRIMARY KEY, account_balance REAL)''')
 
 cursor_users.execute('''CREATE TABLE IF NOT EXISTS users (email PRIMARY KEY, password varchar(255))''')
 
@@ -85,7 +85,7 @@ cursor_users.execute('''CREATE TABLE IF NOT EXISTS users (email PRIMARY KEY, pas
 
 
 if (len(sys.argv) == 3):
-    #print("In the users section.")
+    print("In the users section.")
     email = str(sys.argv[1])
     pass_word = str(sys.argv[2])
 
@@ -95,11 +95,11 @@ if (len(sys.argv) == 3):
 
 elif len(sys.argv) ==4:
     #print("4!!!!!!!!!!!!!")
-    id_num = int(sys.argv[1])
+    id = sys.argv[1]
     FirstName = str(sys.argv[2])
     LastName = str(sys.argv[3])
 
-    cursor.execute('''insert into clients values (?,?,?)''', (id_num, FirstName, LastName))
+    cursor.execute('''insert into clients values (?,?,?)''', (id, FirstName, LastName))
     conn.commit()
 
 
@@ -107,22 +107,22 @@ elif (len(sys.argv) == 7):
     print("SEVEN")
     if str(sys.argv[1]) == "bank":
         #print("BANK!!!!!!")
-        id_num = int(sys.argv[2])
+        id = sys.argv[2]
         FirstName = str(sys.argv[3])
         LastName = str(sys.argv[4])
         BankName = str(sys.argv[5])
         BankBalance = float(sys.argv[6])
-        cursor.execute('''insert into banks values (?,?,?,?,?)''', (id_num, FirstName, LastName, BankName, BankBalance))
+        cursor.execute('''insert into banks values (?,?,?,?,?)''', (id, FirstName, LastName, BankName, BankBalance))
         conn.commit()
 
     elif str(sys.argv[1]) == "brokerage":
         #print("BROKERSSSSSSSSSSSSSSSSSSS")
-        id_num = int(sys.argv[2])
+        id = int(sys.argv[2])
         FirstName = str(sys.argv[3])
         LastName = str(sys.argv[4])
         BrokerName = str(sys.argv[5])
         BrokerBalance = float(sys.argv[6])
-        cursor.execute('''insert into brokerages values (?,?,?,?,?)''', (id_num, FirstName, LastName, BrokerName, BrokerBalance))
+        cursor.execute('''insert into brokerages values (?,?,?,?,?)''', (id, FirstName, LastName, BrokerName, BrokerBalance))
         conn.commit()
 
 
