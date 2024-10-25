@@ -104,9 +104,12 @@ elif len(sys.argv) ==4:
 
 
 elif (len(sys.argv) == 7):
-    print("SEVEN")
+    #print("SEVEN")
+    #for i in sys.argv:
+    #    print("\n")
+    #    print(i)
     if str(sys.argv[1]) == "bank":
-        #print("BANK!!!!!!")
+        print("BANK!!!!!!")
         id = sys.argv[2]
         FirstName = str(sys.argv[3])
         LastName = str(sys.argv[4])

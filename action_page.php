@@ -134,15 +134,26 @@
 	<div>
 	<div>
 		<form action="action_page.php" method="post">
-		    <label for="bankName"><b>New Bank Information</b></label>
-			<input type="text" placeholder="Enter the name of your bank" name="bankName" required>
+
 			
 			<input type="hidden" id="uname" name="uname" id="uname" value="<?php echo $username; ?>">
 			
+		    <label for="bankName"><b>New Bank Information</b></label>
+			<input type="text" placeholder="Enter the name of your bank" name="bankName" required>
 			
+		    <label for="firstName"><b>First Name</b></label>
+			<input type="text" placeholder="Enter the name of your bank" name="firstName" required>
+			
+		    <label for="lastName"><b>Last Name</b></label>
+			<input type="text" placeholder="Enter the name of your bank" name="lastName" required>
+			
+		    <label for="accountBalance"><b>Your Account Balance</b></label>
+			<input type="text" placeholder="Enter your account balance" name="accountBalance" required>
+   			
 			<input id="bankName" type="submit" name="button1"
                 class="button" value="Add bank information" />
-   
+
+
 		</form>
 	</div>
 	
@@ -151,14 +162,21 @@
             button1();
         }
         function button1() {
-            echo "This is Button1 that is selected";
+            //echo "This is Button1 that is selected";
 			
 			$username = $_POST['uname'];
-			$bank_name = $_POST['bankName'];
-			echo "Bank name is $bank_name for $username";
+			$fName = $_POST['firstName'];
+			$lName = $_POST['lastName'];
+			$bname = $_POST['bankName'];
+			$accBal = $_POST['accountBalance'];
+			//echo "Bank name is $bank_name for $username";
 			$connection = new SQLite3('budget.db');
 			
-			//exec('python main.py ');
+			$str = "python main.py bank $username $fName $lName $bname $accBal";
+			
+			echo "String is $str \n";
+			
+			exec($str);
         }
 
     ?>
@@ -185,19 +203,66 @@
         }
         function button2() {
             echo "This is Button2 that is selected";
-			$username = $_POST['uname'];
-			$connection = new SQLite3('budget.db');
+			$username = $_POST['uname'];		
+			
+			
+			/////////////////////// This is a test to make sure I can actually access the databases: //////////////////////////////////////////////////////////////
+			
+					$connection = new SQLite3('budget.db');
+					if($connection){
+						echo "Table of Banks\n";
+					
+					$statement = $connection->prepare('SELECT * FROM banks WHERE id = ?');
+					$statement->bindValue(1, "$username");
+					$results = $statement->execute();
+					
+					echo('<table>');
+					//echo("<th>ID");
+					//echo("<th>First Name");
+					//echo("<th>Last Name");
+					echo("<th>Bank Name");
+					echo("<th>Account Balance");
+					while($row=$results->fetchArray(SQLITE3_ASSOC)){
+						echo('<tr>');
+						//echo('<td>');
+						//echo $row['ID'] . " ";
+						//echo('</td>');
+						//echo('<td>');
+						//echo $row['first_name'] . " ";
+						//echo('</td>');
+						//echo('<td>');
+						//echo $row['last_name'] . '<br>';  // We separate <br> from the data by a '.'
+						//echo('</td>');
+						echo("<td>");
+						echo $row['bank_name'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("<td>");
+						echo("$");
+						echo $row['account_balance'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("</tr>");
+				
+					}
+					echo('</table>');
+					}
+			
+			
+			
         }
 ?>
+
+<p>
+	<div>
 	<form action="action_page.php" method="post">
 		    <label for="showBanks"><b>Banking Information</b></label>
-			<input type="text" placeholder="Enter the name of your bank" name="showBanks" required>
-	
+				
 			<input type="hidden" id="uname" name="uname" value="<?php echo $username; ?>">
 			
 			<input id="showBanks" type="submit" name="button2"
                 class="button" value="Show your bank information." />
 	</form>
+	</div>
+</p>
 
 <!-- The above section will be to show your bank accounts -->
 
