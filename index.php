@@ -63,8 +63,8 @@
 			else{
 				echo("Good");
 			}
-			
-			$sql = "CREATE DATABASE myDB";
+		
+			$sql = "CREATE DATABASE IF NOT EXISTS myDB";
 			if ($conn->query($sql) === TRUE) {
 			echo "Database created successfully";
 			} else {
@@ -82,9 +82,9 @@
 			die("Connection failed: " . $conn->connect_error);
 			}	
 			
-			$sql = "CREATE DATABASE myDB";
+			$sql = "CREATE DATABASE IF NOT EXISTS myDB";
 			if ($conn->query($sql) === TRUE) {
-			echo "Database created successfully";
+			//echo "Database created successfully";
 			} else {
 			echo "Error creating database: " . $conn->error;
 			}			

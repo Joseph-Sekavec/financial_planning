@@ -142,10 +142,10 @@
 			<input type="text" placeholder="Enter the name of your bank" name="bankName" required>
 			
 		    <label for="firstName"><b>First Name</b></label>
-			<input type="text" placeholder="Enter the name of your bank" name="firstName" required>
+			<input type="text" placeholder="Enter your first name" name="firstName" required>
 			
 		    <label for="lastName"><b>Last Name</b></label>
-			<input type="text" placeholder="Enter the name of your bank" name="lastName" required>
+			<input type="text" placeholder="Enter your last name" name="lastName" required>
 			
 		    <label for="accountBalance"><b>Your Account Balance</b></label>
 			<input type="text" placeholder="Enter your account balance" name="accountBalance" required>
@@ -156,6 +156,8 @@
 
 		</form>
 	</div>
+	
+	
 	
 	    <?php
         if(array_key_exists('button1', $_POST)) {
@@ -180,6 +182,9 @@
         }
 
     ?>
+	
+	
+		    
 
 
 		
@@ -265,6 +270,163 @@
 </p>
 
 <!-- The above section will be to show your bank accounts -->
+
+
+
+
+
+
+
+
+<!-- Here we shall add to our account balance: -->
+
+<p>
+	<div>
+	<form action="action_page.php" method="post">
+		    <label for="showBanks"><b>Banking Information</b></label>
+				
+			<input type="hidden" id="uname" name="uname" value="<?php echo $username; ?>">
+			
+		    <label for="bankName"><b>Bank Name</b></label>
+			<input type="text" placeholder="Enter the bank name of the account you wish to add money to." name="bankName" required>
+
+
+		    <label for="addVal"><b>Enter the amount of money you want to add.</b></label>
+			<input type="text" placeholder="Enter your last name" name="addVal" required>
+			
+			<input id="updateBalane" type="submit" name="button3"
+                class="button" value="Add to your account balance." />
+	</form>
+	</div>
+</p>
+
+<?php
+		if(array_key_exists('button3', $_POST)) {
+            button3();
+        }
+        function button3() {
+					$username = $_POST['uname'];	
+					
+					$bankName = $_POST['bankName'];
+					
+					$addVal = floatval($_POST['addVal']);
+					
+					//echo "Bank name is $bankName";
+
+					$connection = new SQLite3('budget.db');
+					if($connection){
+						echo "Table of Banks\n";
+					
+					$statement = $connection->prepare('SELECT * FROM banks WHERE id = ? AND bank_name = ?');
+					$statement->bindValue(1, "$username");
+					$statement->bindValue(2, "$bankName");
+					$results = $statement->execute();
+
+
+					echo('<div>');
+					echo ('<p>');
+					echo('<table>');
+					//echo("<th>ID");
+					//echo("<th>First Name");
+					//echo("<th>Last Name");
+					echo("<th>Bank Name");
+					echo("<th>Account Balance");
+					while($row=$results->fetchArray(SQLITE3_ASSOC)){
+						echo('<tr>');
+						//echo('<td>');
+						//echo $row['ID'] . " ";
+						//echo('</td>');
+						//echo('<td>');
+						//echo $row['first_name'] . " ";
+						//echo('</td>');
+						//echo('<td>');
+						//echo $row['last_name'] . '<br>';  // We separate <br> from the data by a '.'
+						//echo('</td>');
+						echo("<td>");
+						echo $row['bank_name'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("<td>");
+						echo("$");
+						
+						$resultant = $row['account_balance'] + $addVal;
+						
+						echo $row['account_balance'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("</tr>");
+				
+					}
+					echo('</table>');			
+					echo('</P>');
+					echo('</div>');
+
+					///////////////////// The above is a unit test to make sure that the balance is different before and after the addition /////////////////////////////
+					
+					
+
+					
+					//echo("Resultant is: $resultant");
+					
+					$statement = $connection->prepare('UPDATE banks SET account_balance = ? WHERE id = ? AND bank_name = ?');
+					$statement->bindValue(1, "$resultant");
+					$statement->bindValue(2, "$username");
+					$statement->bindValue(3, "$bankName");
+					$results = $statement->execute();
+					
+								
+					
+
+
+
+
+
+///////////////////////////// The below is a unit test to make sure the value is actually updated, and not just displayed //////////////////////////////////////////////////////
+
+
+
+					$statement = $connection->prepare('SELECT * FROM banks WHERE id = ? AND bank_name = ?');
+					$statement->bindValue(1, "$username");
+					$statement->bindValue(2, "$bankName");
+					$results = $statement->execute();
+
+					echo('<div>');
+					echo ('<p>');
+					echo('<table>');
+					//echo("<th>ID");
+					//echo("<th>First Name");
+					//echo("<th>Last Name");
+					echo("<th>Bank Name");
+					echo("<th>Account Balance");
+					while($row=$results->fetchArray(SQLITE3_ASSOC)){
+						echo('<tr>');
+						//echo('<td>');
+						//echo $row['ID'] . " ";
+						//echo('</td>');
+						//echo('<td>');
+						//echo $row['first_name'] . " ";
+						//echo('</td>');
+						//echo('<td>');
+						//echo $row['last_name'] . '<br>';  // We separate <br> from the data by a '.'
+						//echo('</td>');
+						echo("<td>");
+						echo $row['bank_name'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("<td>");
+						echo("$");
+						echo $row['account_balance'] . '<br>';  // We separate <br> from the data by a '.'
+						echo('</td>');
+						echo("</tr>");
+				
+					}
+					echo('</table>');			
+					echo('</P>');
+					echo('</div>');
+					
+					}
+		}
+		
+		?>
+
+
 
 <style>
 /* Bordered form */
